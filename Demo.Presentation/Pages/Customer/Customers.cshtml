@@ -1,0 +1,52 @@
+﻿@page
+@model CustomersModel
+@{
+}
+
+<!-- Main Content -->
+<div class="container">
+    <h1 style="font-weight: bolder; text-align: center;">Customers</h1>
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-primary" >
+            <a style="text-decoration: none;" asp-area="" asp-page="/Customer/Create">Create Customer</a>
+        </button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 2%;">ID</th>
+                <th  style="width: 30%;">Name</th>
+                <th  style="width: 10%;">Birth Date</th>
+                <th  style="width: 10%;">Age</th>
+                <th style="width: 10%;" colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model.Customers)
+            {
+                <tr class="@(customer.IsActive ? "" : "in-active")">
+                    <td>@customer.Id</td>
+                    <td>@customer.Name</td>
+                    <td>@customer.BirthDate.ToString("dd/MM/yyyy")</td>
+                    <td>@customer.Age</td>
+                    <td colspan="2">
+
+                       
+                        <button  class="btn btn-primary">
+                             <a asp-area="" asp-page="/Customer/Edit" asp-route-id="@customer.Id">
+                            <i class="bi bi-pencil"></i>
+                            </a>
+                            </button>
+
+                        <button class="btn btn-danger">
+                            <a asp-area="" asp-page="/Customer/Delete" asp-route-id="@customer.Id">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </button>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
