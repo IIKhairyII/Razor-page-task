@@ -1,6 +1,7 @@
 ﻿@page
 @model Demo.Presentation.Pages.Customer.DeleteModel
 @{
+    ViewData["Title"] = "Delete Customer";
 }
 
 
@@ -18,7 +19,7 @@
         </div>
 
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" asp-for="Customer.IsActive" readonly>
+            <input class="form-check-input" type="checkbox" asp-for="Customer.IsActive" readonly disabled>
             <label class="form-check-label" asp-for="Customer.IsActive">
                 Is Active
             </label>

@@ -96,7 +96,7 @@ table {
         background-color: #f1f1f1;
     }
     .in-active{
-        background-color: darkred;
+        background-color: darkred !important;
         color: white;
     }
     .btn a{

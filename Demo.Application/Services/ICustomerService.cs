@@ -9,5 +9,6 @@ namespace Demo.Application.Services
         Task<CustomerDto> GetCustomerById(int id);
         Task<int> DeleteCustomer(int id);
         Task<int> AddCustomer(AddCustomerCommandDto customer);
+        Task<int> EditCustomer(UpdateCustomerCommandDto customer);
     }
 }

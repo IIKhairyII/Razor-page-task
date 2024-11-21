@@ -12,9 +12,16 @@ namespace Demo.Application.Handlers.Customer.Commands
         {
             _customerService = customerService;
         }
-        public Task<int> Handle(UpdateCustomerCommandDto request, CancellationToken cancellationToken)
+        public async Task<int> Handle(UpdateCustomerCommandDto request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _customerService.EditCustomer(request);
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
         }
     }
 }

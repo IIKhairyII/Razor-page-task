@@ -29,9 +29,21 @@ namespace Demo.Infrastructure.Services
             var customer = await _customerRepo.GetByIdAsync(id);
             if (customer is null)
                 return 0;
-           await _customerRepo.Delete(customer);
-            //return await _customerRepo.SaveCahngesAsync();
-            return 1;
+            return await _customerRepo.Delete(customer);
+        }
+
+        public async Task<int> EditCustomer(UpdateCustomerCommandDto customer)
+        {
+            if (customer is null)
+                return 0;
+            var updatedCustomer = new Customer()
+            {
+                Id = customer.Customer.Id,
+                Name = customer.Customer.Name,
+                IsActive = customer.Customer.IsActive,
+                BirthDate = customer.Customer.BirthDate,
+            };
+            return await _customerRepo.Update(updatedCustomer);
         }
 
         public async Task<ICollection<CustomerDto>> GetAllCustomers()

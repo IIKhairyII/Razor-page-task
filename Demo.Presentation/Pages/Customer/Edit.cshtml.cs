@@ -21,9 +21,26 @@ namespace Demo.Presentation.Pages.Customer
             var customer = await _mediator.Send(new GetCustomerByIdQueryDto() { Id = id });
             Customer = customer;
         }
-        public async Task OnPost(int id)
+        public async Task<IActionResult> OnPost()
         {
-            var result = await _mediator.Send(new DeleteCustomerCommandDto() { Id = id });
+
+            var customer = new UpdateCustomerCommandDto()
+            {
+                Customer = new()
+                {
+                    Id = Customer.Id,
+                    Name = Customer.Name,
+                    IsActive = Customer.IsActive,
+                    BirthDate = Customer.BirthDate,
+                }
+            };
+            var result = await _mediator.Send(customer);
+            if (result > 0)
+                return RedirectToPage("/Customer/Customers");
+
+            ModelState.AddModelError(string.Empty, "Error while editing customer....Make sure customer exists and try again please!!!!");
+            return Page();
+
         }
     }
 }
