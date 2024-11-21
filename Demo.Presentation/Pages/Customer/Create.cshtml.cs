@@ -21,8 +21,11 @@ namespace Demo.Presentation.Pages.Customer
         }
         public async Task<IActionResult> OnPost()
         {
+            if (!ModelState.IsValid)
+                return Page();
+
             var result = await _mediator.Send(Customer);
-            if(result > 0) 
+            if (result > 0)
                 return RedirectToPage("/Customer/Customers");
             ModelState.AddModelError(string.Empty, "Error while adding customer....try again please!!!!");
             return Page();

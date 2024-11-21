@@ -23,7 +23,8 @@ namespace Demo.Presentation.Pages.Customer
         }
         public async Task<IActionResult> OnPost()
         {
-
+            if (!ModelState.IsValid)
+                return Page();
             var customer = new UpdateCustomerCommandDto()
             {
                 Customer = new()

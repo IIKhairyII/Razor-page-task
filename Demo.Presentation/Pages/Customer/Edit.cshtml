@@ -13,12 +13,14 @@
     <form method="post">
         <div class="mb-3">
             <label class="form-label" asp-for="Customer.Name">Name</label>
-            <input type="text" class="form-control" asp-for="Customer.Name">
+            <input type="text" class="form-control" asp-for="Customer.Name" required>
+            <span asp-validation-for="Customer.Name" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
             <label class="form-label" asp-for="Customer.BirthDate">Birth Date</label>
-            <input type="date" class="form-control" asp-for="Customer.BirthDate">
+            <input type="text" class="form-control" asp-for="Customer.BirthDate" required>
+            <span asp-validation-for="Customer.BirthDate" class="text-danger"></span>
         </div>
 
         <div class="form-check">
