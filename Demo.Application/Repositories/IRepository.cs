@@ -6,10 +6,9 @@ namespace Demo.Application.Repositories
     {
         Task<ICollection<T>> GetAll();
         Task<T?> GetByIdAsync(int id);
-        Task AddAsync(T entity);
-        void Update(T entity);
-        void Delete(T entity);
-        Task<int> SaveCahngesAsync();
+        Task<int> AddAsync(T entity);
+        Task<int> Update(T entity);
+        Task<int> Delete(T entity);
 
     }
 }

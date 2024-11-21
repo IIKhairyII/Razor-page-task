@@ -12,25 +12,32 @@ namespace Demo.Infrastructure.Repositories
         {
             _context = context;
         }
-        public async Task AddAsync(T entity) => await _context.Set<T>().AddAsync(entity);
+        public async Task<int> AddAsync(T entity)
+        {
+            await _context.Set<T>().AddAsync(entity);
+            return await _context.SaveChangesAsync();
+        }
 
 
-        public void Delete(T entity)
+        public async Task<int> Delete(T entity)
         {
             if (entity != null)
                 _context.Set<T>().Remove(entity);
-
+            return await _context.SaveChangesAsync();
         }
         public async Task<ICollection<T>> GetAll() => await _context.Set<T>().ToListAsync();
 
-
-        public async Task<T?> GetByIdAsync(int id) => await _context.Set<T>().FindAsync(id);
-
-
-        public async Task<int> SaveCahngesAsync() => await _context.SaveChangesAsync();
-
-
-        public void Update(T entity) => _context.Set<T>().Update(entity);
+        public async Task<T> GetByIdAsync(int id)
+        {
+            var e = await _context.Set<T>()?.FirstOrDefaultAsync(a => a.Id == id)!;
+            if (e != null) return e;
+            else return default!;
+        }
+        public async Task<int> Update(T entity)
+        {
+            _context.Set<T>().Update(entity);
+            return await _context.SaveChangesAsync();
+        }
 
     }
 }

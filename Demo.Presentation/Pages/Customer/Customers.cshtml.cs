@@ -1,4 +1,4 @@
-using Demo.Application.DTOs.Customer.Requests;
+using Demo.Application.DTOs.Customer.Requests.Queries;
 using Demo.Application.DTOs.Customer.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,7 +15,7 @@ namespace Demo.Presentation.Pages.Customer
         }
         public async Task OnGet()
         {
-            Customers = (await _mediator.Send(new GetCustomersDto())).ToList();
+            Customers = (await _mediator.Send(new GetCustomersQueryDto())).ToList();
         }
     }
 }

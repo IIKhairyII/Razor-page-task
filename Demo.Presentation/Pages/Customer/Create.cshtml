@@ -3,23 +3,26 @@
 @{
 }
 
-
 <div class="container mt-5">
+    <div asp-validation-summary="ModelOnly"
+    style="text-decoration: none;"
+    class="alert alert-danger pb-0" role="alert">
+    </div>
     <h2>Add New Customer</h2>
     <form method="post">
         <div class="mb-3">
-            <label for="Name" class="form-label" asp-for="Customer.Name">Name</label>
-            <input type="text" id="Name" name="Name" class="form-control" required asp-for="Customer.Name">
+            <label  class="form-label" asp-for="Customer.Name">Name</label>
+            <input type="text" class="form-control" required asp-for="Customer.Name">
         </div>
 
         <div class="mb-3">
-            <label for="BirthDate" class="form-label" asp-for="Customer.BirthDate">Birth Date</label>
-            <input type="date" id="BirthDate" name="BirthDate" class="form-control" required asp-for="Customer.BirthDate">
+            <label class="form-label" asp-for="Customer.BirthDate">Birth Date</label>
+            <input type="date"  class="form-control" required asp-for="Customer.BirthDate">
         </div>
 
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="IsActive" name="IsActive" asp-for="Customer.IsActive">
-            <label class="form-check-label" for="IsActive" asp-for="Customer.IsActive">
+            <input class="form-check-input" type="checkbox" asp-for="Customer.IsActive">
+            <label class="form-check-label"  asp-for="Customer.IsActive">
                 Is Active
             </label>
         </div>

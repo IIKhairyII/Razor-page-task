@@ -1,4 +1,4 @@
-﻿using Demo.Application.DTOs.Customer.Requests;
+﻿using Demo.Application.DTOs.Customer.Requests.Commands;
 using Demo.Application.DTOs.Customer.Responses;
 
 namespace Demo.Application.Services
@@ -8,6 +8,6 @@ namespace Demo.Application.Services
         Task<ICollection<CustomerDto>> GetAllCustomers();
         Task<CustomerDto> GetCustomerById(int id);
         Task<int> DeleteCustomer(int id);
-        Task<int> AddCustomer(AddCustomerDto customer);
+        Task<int> AddCustomer(AddCustomerCommandDto customer);
     }
 }

@@ -1,4 +1,4 @@
-﻿using Demo.Application.DTOs.Customer.Requests;
+﻿using Demo.Application.DTOs.Customer.Requests.Commands;
 using Demo.Application.DTOs.Customer.Responses;
 using Demo.Application.Repositories;
 using Demo.Application.Services;
@@ -13,7 +13,7 @@ namespace Demo.Infrastructure.Services
         {
             _customerRepo = customerRepo;
         }
-        public async Task<int> AddCustomer(AddCustomerDto customer)
+        public async Task<int> AddCustomer(AddCustomerCommandDto customer)
         {
             var newCustomer = new Customer()
             {
@@ -21,8 +21,7 @@ namespace Demo.Infrastructure.Services
                 BirthDate = customer.BirthDate,
                 IsActive = customer.IsActive,
             };
-            await _customerRepo.AddAsync(newCustomer);
-            return await _customerRepo.SaveCahngesAsync();
+            return await _customerRepo.AddAsync(newCustomer);
         }
 
         public async Task<int> DeleteCustomer(int id)
@@ -30,8 +29,9 @@ namespace Demo.Infrastructure.Services
             var customer = await _customerRepo.GetByIdAsync(id);
             if (customer is null)
                 return 0;
-            _customerRepo.Delete(customer);
-            return await _customerRepo.SaveCahngesAsync();
+           await _customerRepo.Delete(customer);
+            //return await _customerRepo.SaveCahngesAsync();
+            return 1;
         }
 
         public async Task<ICollection<CustomerDto>> GetAllCustomers()

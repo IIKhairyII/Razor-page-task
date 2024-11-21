@@ -1,4 +1,4 @@
-using Demo.Application.DTOs.Customer.Requests;
+using Demo.Application.DTOs.Customer.Requests.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,7 +9,7 @@ namespace Demo.Presentation.Pages.Customer
     public class CreateModel : PageModel
     {
         [BindProperty]
-        public AddCustomerDto Customer { get; set; }
+        public AddCustomerCommandDto Customer { get; set; }
 
         private readonly IMediator _mediator;
         public CreateModel(IMediator mediator)
@@ -19,9 +19,13 @@ namespace Demo.Presentation.Pages.Customer
         public void OnGet()
         {
         }
-        public async Task OnPost()
+        public async Task<IActionResult> OnPost()
         {
-            await _mediator.Send(Customer);
+            var result = await _mediator.Send(Customer);
+            if(result > 0) 
+                return RedirectToPage("/Customer/Customers");
+            ModelState.AddModelError(string.Empty, "Error while adding customer....try again please!!!!");
+            return Page();
         }
     }
 }
