@@ -15,7 +15,8 @@ namespace Demo.Presentation.Pages.Customer
         }
         public async Task OnGet()
         {
-            Customers = (await _mediator.Send(new GetCustomersQueryDto())).ToList();
+            var customers = await _mediator.Send(new GetCustomersQueryDto());
+            Customers = customers.ToList();
         }
     }
 }

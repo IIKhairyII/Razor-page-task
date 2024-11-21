@@ -25,7 +25,7 @@ namespace Demo.Infrastructure.Repositories
                 _context.Set<T>().Remove(entity);
             return await _context.SaveChangesAsync();
         }
-        public async Task<ICollection<T>> GetAll() => await _context.Set<T>().ToListAsync();
+        public async Task<ICollection<T>> GetAll() => await _context.Set<T>().AsNoTracking().ToListAsync();
 
         public async Task<T> GetByIdAsync(int id)
         {

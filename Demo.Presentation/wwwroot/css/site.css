@@ -102,3 +102,6 @@ table {
     .btn a{
         color: aliceblue; 
     }
+    h2, h1{
+        font-weight: bolder;
+    }
