@@ -1,5 +1,4 @@
-﻿using Demo.Application.DTOs.Customer.Requests.Commands;
-using Demo.Application.DTOs.Customer.Responses;
+﻿using Demo.Application.DTOs.Customer.Responses;
 using FluentValidation;
 
 namespace Demo.Application.Validations
@@ -22,6 +21,10 @@ namespace Demo.Application.Validations
                 .NotEmpty()
                 .NotNull()
                 .WithMessage("Birth date is required");
+
+            RuleFor(x => x.BirthDate)
+                .GreaterThan(DateTime.MinValue)
+                .WithMessage("The date must be a valid date.");
         }
     }
 }

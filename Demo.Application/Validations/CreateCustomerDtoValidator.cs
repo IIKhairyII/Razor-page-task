@@ -20,6 +20,10 @@ namespace Demo.Application.Validations
                 .NotEmpty()
                 .NotNull()
                 .WithMessage("Birth date is required");
+
+            RuleFor(x => x.BirthDate)
+                .GreaterThan(DateTime.MinValue)
+                .WithMessage("The date must be a valid date.");
         }
     }
 }
